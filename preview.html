@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOVA Photo Booth - Preview Your Strip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Integrated CSS file that contains both preview.css and preview2.css merged -->
+  <link rel="stylesheet" href="../style/preview.css">
+</head>
+<body>
+  <div class="main-wrapper">
+    <header>
+      <h1>NOVA Photo Booth</h1>
+      <p class="tagline">Preview &amp; Customize Your Photo Strip</p>
+    </header>
+    
+    <div class="preview-container">
+      <div class="preview-content">
+        <!-- Collage wrapper holds the canvas and sticker overlay -->
+        <div id="collage-wrapper">
+          <canvas id="collage-canvas"></canvas>
+          <div id="preview-sticker-container"></div>
+        </div>
+        
+        <!-- Edit Options panel -->
+        <div class="edit-options">
+          <div class="template-options">
+            <h2>Template Style</h2>
+            <div class="button-group">
+              <button class="template-btn btn active" data-template="classic">Classic</button>
+              <button class="template-btn btn" data-template="polaroid">Polaroid</button>
+              <button class="template-btn btn" data-template="vintage">Vintage</button>
+              <button class="template-btn btn" data-template="modern">Modern</button>
+              <button class="template-btn btn" data-template="bubbly">Bubbly</button>
+              <button class="template-btn btn" data-template="rustic">Rustic</button>
+              <button class="template-btn btn" data-template="dreamy">Dreamy</button>
+              <button class="template-btn btn" data-template="whimsical">Whimsical</button>
+              <button class="template-btn btn" data-template="playful">Playful</button>
+              <button class="template-btn btn" data-template="grid">Grid</button>
+            </div>
+          </div>
+          
+          <div class="preview-bg-options">
+            <h2>Background</h2>
+            <div class="button-group">
+              <button class="preview-bg-btn btn" data-bg="white">White</button>
+          
+              <button class="preview-bg-btn btn" data-bg="pastel">Pastel</button>
+              <button class="preview-bg-btn btn" data-bg="polka">Polka Dots</button>
+              <button class="preview-bg-btn btn" data-bg="abstract">Abstract</button>
+           
+              <button class="preview-bg-btn btn" data-bg="snow">Snow</button>
+              <button class="preview-bg-btn btn" data-bg="90s">90s</button>
+              
+              <button class="preview-bg-btn btn" data-bg="love">Love</button>
+            </div>
+          </div>
+          
+          <div class="preview-sticker-options">
+            <h2>Stickers</h2>
+            <p class="tip">Tip: Double-click stickers to resize them</p>
+            <div class="button-group sticker-buttons">
+              <button class="preview-sticker-btn btn" data-sticker="⭐">⭐</button>
+              <button class="preview-sticker-btn btn" data-sticker="❤️">❤️</button>
+              <button class="preview-sticker-btn btn" data-sticker="✨">✨</button>
+              <button class="preview-sticker-btn btn" data-sticker="🎉">🎉</button>
+              <button class="preview-sticker-btn btn" data-sticker="😎">😎</button>
+              <button class="preview-sticker-btn btn" data-sticker="🌟">🌟</button>
+              <button class="preview-sticker-btn btn" data-sticker="💯">💯</button>
+              <button class="preview-sticker-btn btn" data-sticker="🔥">🔥</button>
+              <button class="preview-sticker-btn btn" data-sticker="❄">❄</button>
+              <button class="preview-sticker-btn btn" data-sticker="🕶">🕶</button>
+              <button class="preview-sticker-btn btn" data-sticker="🐻">🐻</button>
+              <button class="preview-sticker-btn btn" data-sticker="💕">💕</button>
+              <button class="preview-sticker-btn btn" data-sticker="💗">💗</button>
+              <button id="clear-stickers" class="btn clear-btn">Clear All</button>
+            </div>
+          </div>
+          
+          <div class="action-options">
+            <button id="download" class="btn action-btn">Download Photo Strip</button>
+            <button id="next-btn" class="btn action-btn">MORE PHOTOS?</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <div class="footer-bottom">
+        <p>© 2025 Nova. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Integrated JavaScript file: preview.js (which contains merged code from preview.js, preview2.js, and toggle logic) -->
+  <script src="../script/preview.js"></script>
+</body>
+</html>

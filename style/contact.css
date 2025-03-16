@@ -1,0 +1,60 @@
+/* Additional styling for the contact page */
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f0e1ea;
+    border-radius: 20px;
+    text-align: center;
+  }
+  
+  .contact-container h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .contact-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contact-container label {
+    text-align: left;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .contact-container input,
+  .contact-container textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+  }
+  
+  .contact-container small {
+    color: #666;
+    font-size: 0.8em;
+  }
+  
+  .contact-container button.primary-btn {
+    align-self: center;
+    padding: 12px 30px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-container button.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  

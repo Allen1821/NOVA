@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Booth</title>
+  <link rel="stylesheet" href="../style/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="booth-page">
+  <header>
+    <div class="logo-wrapper">
+      <a href="index.html" class="reduce-click-area">
+        <img src="../images/nova_logo_test_3.png" alt="NOVA Photo Booth">
+        <div class="click-overlay"></div>
+      </a>
+    </div>
+    
+    <div class="nav-menu">
+      <a href="booth.html" class="selected">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </header>
+  
+  <div class="booth-container">
+    <div class="main-area">
+      <h2 class="section-title">Capture Your Moment</h2>
+      
+      <div class="video-section">
+        <div class="video-container">
+          <video id="video" autoplay class="hidden"></video>
+          <!-- Removed sticker container since stickers are no longer used -->
+          <div id="flash-overlay" class="flash-overlay hidden"></div>
+          <div id="countdown"></div>
+        </div>
+        <canvas id="canvas" class="hidden"></canvas>
+      </div>
+      
+      <div class="action-section">
+        <div class="action-buttons">
+          <button id="show-camera" class="primary-btn">Show Camera</button>
+          <button id="capture" class="primary-btn hidden">Capture All 4 Photos</button>
+          <button id="next-btn" class="primary-btn hidden">Done</button>
+          <button id="retake-btn" class="primary-btn hidden">Retake</button>
+        </div>
+        <div class="status">
+          <p id="shot-count">Shot 0 of 4</p>
+        </div>
+      </div>
+      
+      <!-- Controls Section (Sticker and Background options removed) -->
+      <div class="controls">
+        <div class="options-container">
+          <div class="options">
+            <!-- Filter options -->
+            <div class="option-card filter-options">
+              <h3 class="option-title">Filters</h3>
+              <div class="option-content">
+                <button class="filter btn selected" data-filter="none">None</button>
+                <button class="filter btn" data-filter="grayscale">Grayscale</button>
+                <button class="filter btn" data-filter="sepia">Sepia</button>
+                <button class="filter btn" data-filter="invert">Invert</button>
+                <button id="flip-btn" class="flip-btn btn">Flip</button>
+              </div>
+            </div>
+            
+            <!-- Lighting Options Card -->
+            <div class="option-card lighting-options">
+              <h3 class="option-title">Lighting Effect</h3>
+              <div class="option-content">
+                <button class="lighting-btn btn selected" data-light="warm">Warm Light</button>
+                <button class="lighting-btn btn" data-light="white">White Light</button>
+                <button class="lighting-btn btn" data-light="pink">Pink Light</button>
+              </div>
+              <div class="option-content" style="margin-top: 10px;">
+                <label for="lighting-slider">Adjust Glow Intensity</label>
+                <input type="range" id="lighting-slider" min="0" max="100" value="50">
+              </div>
+            </div>
+            
+            <!-- Timer options -->
+            <div class="option-card timer-options">
+              <h3 class="option-title">Timer</h3>
+              <div class="option-content">
+                <button class="timer-btn btn selected" data-time="3">3s</button>
+                <button class="timer-btn btn" data-time="5">5s</button>
+                <button class="timer-btn btn" data-time="10">10s</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="side-preview">
+    <h3 class="preview-title">Your Photos</h3>
+  </div>
+  
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="booth.html">Home</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3 class="footer-title">Socials</h3>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3 class="footer-title">Photo Booth</h3>
+        <p>YOO SNAP THAT MOMENT?</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Nova. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script src="../script/script.js"></script>
+</body>
+</html>

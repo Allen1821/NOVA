@@ -1,0 +1,107 @@
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #c6e0f7, #d1b3f1, #e5a9b1
+    );
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  
+  
+  .hero-overlay {
+    color: #fff;
+  }
+  
+  .hero-title {
+    
+    font-size: 3em;
+    color: #ffffff; /* base pink color */
+    position: relative;
+    text-align: center;
+    margin-bottom: 10px;
+    /*
+      Each text-shadow adds a slightly bigger offset
+      and can use progressively darker or lighter shades
+      to simulate a 3D stack or "bubble" effect.
+    */
+    text-shadow:
+      1px 1px 0 #000000,
+      2px 2px 0 #000000,
+      3px 3px 0 #0a0a0a,
+      4px 4px 0 #080808,
+      5px 5px 0 #000000;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* About Content */
+  .about-content {
+    padding: 60px 20px;
+    background-color: #fff;
+  }
+  
+  .content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-description {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Developer Cards */
+  .developers {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .developer-card {
+    background-color: #f9f0f5;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 280px;
+    text-align: left;
+    border: 5px solid #000000;
+  }
+  
+  .developer-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .developer-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .developer-info {
+    padding: 20px;
+  }
+  
+  .developer-name {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .developer-bio {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+  }
+  
