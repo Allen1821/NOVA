@@ -1,5 +1,3 @@
-// script.js
-
 // Main elements
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
@@ -11,6 +9,8 @@ const showCameraButton = document.getElementById("show-camera");
 const captureButton = document.getElementById("capture");
 const nextShotButton = document.getElementById("next-shot");
 const nextButton = document.getElementById("next-btn");
+const retakeButton = document.getElementById("retake-btn");
+const closeCameraButton = document.getElementById("close-camera");
 const shotCountText = document.getElementById("shot-count");
 
 const filterButtons = document.querySelectorAll(".filter");
@@ -27,6 +27,8 @@ let currentShot = 0;
 let videoReady = false;
 let selectedLighting = "warm";
 let isCapturing = false;
+let stream = null; // Global stream variable
+let isFlipped = false;
 
 // Start the webcam 
 function startCamera() {
@@ -45,7 +47,7 @@ function startCamera() {
       });
     })
     .catch(err => {
-     
+      // Handle errors if needed
     });
 }
 
@@ -57,16 +59,13 @@ showCameraButton.addEventListener("click", () => {
   closeCameraButton.classList.remove("hidden");
 });
 
-// Close Camera button – this will simply hide the video view without pausing the stream
+// Close Camera button – this will hide the video view without stopping the stream
 closeCameraButton.addEventListener("click", () => {
   video.classList.add("hidden");
-  
   captureButton.classList.add("hidden");
   closeCameraButton.classList.add("hidden");
   showCameraButton.classList.remove("hidden");
 });
-
-
 
 // Timer buttons
 timerButtons.forEach(button => {
@@ -237,107 +236,10 @@ function removeLightingOverlay() {
 }
 
 // Capture a shot (video frame + stickers)
-function captureShot() {
-  return new Promise(resolve => {
-    if (!videoReady) {
-    }
-    
-    const overlay = createLightingOverlay();
-    flash();
-    
-    setTimeout(async () => {
-      const photoWidth = (video.videoWidth > 0 ? video.videoWidth : 600);
-      const photoHeight = (video.videoHeight > 0 ? video.videoHeight : 450);
-      canvas.width = photoWidth;
-      canvas.height = photoHeight;
-      const ctx2 = canvas.getContext("2d");
-      
-      if (selectedFilter === "grayscale") {
-        ctx2.filter = "grayscale(100%)";
-      } else if (selectedFilter === "sepia") {
-        ctx2.filter = "sepia(100%)";
-      } else if (selectedFilter === "invert") {
-        ctx2.filter = "invert(100%)";
-      } else {
-        ctx2.filter = "none";
-      }
-      
-      ctx2.drawImage(video, 0, 0, photoWidth, photoHeight);
-      
-      const stickers = stickerContainer.querySelectorAll(".sticker");
-      stickers.forEach(sticker => {
-        const x = parseInt(sticker.style.left) || 0;
-        const y = parseInt(sticker.style.top) || 0;
-        ctx2.font = "40px Arial";
-        ctx2.fillText(sticker.textContent, x, y + 40);
-      });
-      
-      const dataURL = canvas.toDataURL("image/png");
-      shots.push(dataURL);
-      currentShot++;
-      shotCountText.textContent = `Shot ${currentShot} of 4`;
-      
-      updateSidePreview();
-      
-      setTimeout(() => {
-        removeLightingOverlay();
-        resolve();
-      }, 1000);
-    }, 350);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const nextButton = document.getElementById("next-btn");
-
-  if (nextButton) {
-    nextButton.disabled = false;
-    nextButton.addEventListener("click", () => {
-      if (shots.length > 0) {
-        localStorage.setItem("photoShots", JSON.stringify(shots));
-        window.location.href = "preview.html";
-      } else {
-        alert("No shots captured! Please take a photo first.");
-      }
-    });
-  }
-});
-
-//-------------------------------------------------
-
-async function captureAllShots() {
-  if (isCapturing) return;
-  isCapturing = true;
-  
-  captureButton.disabled = true;
-  
-  const overlay = createLightingOverlay();
-  
-  for (let i = 1; i <= 4; i++) {
-    if (i > 1) {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-    
-    await countdown(timerDelay);
-    await captureShot(false);
-    
-    shotCountText.textContent = `Shot ${i} of 4`;
-  }
-  
-  setTimeout(() => {
-    removeLightingOverlay();
-  }, 1000);
-  
-  nextButton.classList.remove("hidden");
-  retakeButton.classList.remove("hidden");
-  captureButton.classList.add("hidden");
-  isCapturing = false;
-}
-
+// This version accepts an optional parameter (default true) to remove the overlay after capture.
 function captureShot(removeOverlayAfter = true) {
   return new Promise(resolve => {
-    if (!videoReady) {
-    }
+    if (!videoReady) return;
     
     if (!document.getElementById("lighting-overlay")) {
       createLightingOverlay();
@@ -391,8 +293,52 @@ function captureShot(removeOverlayAfter = true) {
   });
 }
 
-const retakeButton = document.getElementById("retake-btn");
+document.addEventListener("DOMContentLoaded", () => {
+  const nextButton = document.getElementById("next-btn");
+  if (nextButton) {
+    nextButton.disabled = false;
+    nextButton.addEventListener("click", () => {
+      if (shots.length > 0) {
+        localStorage.setItem("photoShots", JSON.stringify(shots));
+        window.location.href = "preview.html";
+      } else {
+        alert("No shots captured! Please take a photo first.");
+      }
+    });
+  }
+});
 
+// Capture all shots function
+async function captureAllShots() {
+  if (isCapturing) return;
+  isCapturing = true;
+  
+  captureButton.disabled = true;
+  
+  createLightingOverlay();
+  
+  for (let i = 1; i <= 4; i++) {
+    if (i > 1) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    
+    await countdown(timerDelay);
+    await captureShot(false);
+    
+    shotCountText.textContent = `Shot ${i} of 4`;
+  }
+  
+  setTimeout(() => {
+    removeLightingOverlay();
+  }, 1000);
+  
+  nextButton.classList.remove("hidden");
+  retakeButton.classList.remove("hidden");
+  captureButton.classList.add("hidden");
+  isCapturing = false;
+}
+
+// Retake functionality
 retakeButton.addEventListener("click", () => {
   shots = [];
   currentShot = 0;
@@ -423,6 +369,7 @@ captureButton.addEventListener("click", () => {
   captureAllShots();
 });
 
+// Lighting controls
 const lightingButtons = document.querySelectorAll(".lighting-btn");
 lightingButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -455,10 +402,8 @@ function updateLighting() {
   }
 }
 
-
+// Flip functionality
 const flipButton = document.getElementById("flip-btn");
-let isFlipped = false;
-
 flipButton.addEventListener("click", () => {
   isFlipped = !isFlipped;
   updateMirror();
@@ -468,6 +413,7 @@ flipButton.addEventListener("click", () => {
 function updateMirror() {
   video.style.transform = isFlipped ? "scaleX(-1)" : "scaleX(1)";
 }
+
 
 function captureShot(removeOverlayAfter = true) {
   return new Promise(resolve => {
