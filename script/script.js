@@ -28,24 +28,45 @@ let videoReady = false;
 let selectedLighting = "warm";
 let isCapturing = false;
 
-// Start the webcam
+// Start the webcam 
 function startCamera() {
+  if (stream) {
+    // If the stream is already active, simply show the video element.
+    video.classList.remove("hidden");
+    return;
+  }
   navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
+    .then(s => {
+      stream = s;
       video.srcObject = stream;
       video.classList.remove("hidden");
       video.addEventListener("loadedmetadata", () => {
         videoReady = true;
       });
     })
-    .catch(err => {});
+    .catch(err => {
+     
+    });
 }
 
+// Show Camera button
 showCameraButton.addEventListener("click", () => {
   startCamera();
   captureButton.classList.remove("hidden");
   showCameraButton.classList.add("hidden");
+  closeCameraButton.classList.remove("hidden");
 });
+
+// Close Camera button – this will simply hide the video view without pausing the stream
+closeCameraButton.addEventListener("click", () => {
+  video.classList.add("hidden");
+  
+  captureButton.classList.add("hidden");
+  closeCameraButton.classList.add("hidden");
+  showCameraButton.classList.remove("hidden");
+});
+
+
 
 // Timer buttons
 timerButtons.forEach(button => {

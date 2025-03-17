@@ -30,8 +30,8 @@
       
       <div class="video-section">
         <div class="video-container">
-          <video id="video" autoplay class="hidden"></video>
-          <!-- Removed sticker container since stickers are no longer used -->
+          <!-- Note the added playsinline, webkit-playsinline and muted attributes -->
+          <video id="video" autoplay playsinline webkit-playsinline muted class="hidden"></video>
           <div id="flash-overlay" class="flash-overlay hidden"></div>
           <div id="countdown"></div>
         </div>
@@ -44,6 +44,8 @@
           <button id="capture" class="primary-btn hidden">Capture All 4 Photos</button>
           <button id="next-btn" class="primary-btn hidden">Done</button>
           <button id="retake-btn" class="primary-btn hidden">Retake</button>
+          <!-- New close button that will only hide the camera view -->
+          <button id="close-camera" class="primary-btn hidden">Close Camera</button>
         </div>
         <div class="status">
           <p id="shot-count">Shot 0 of 4</p>
