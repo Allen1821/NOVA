@@ -1,6 +1,6 @@
 # 📸 NOVA Photo Booth  
 
-[NOVA Photo Booth](https://allen1821.github.io/NOVA/) is a **fun and interactive web application** that lets users **capture photos using their device’s camera**, apply **creative filters and lighting effects**, and create **customizable photo strips**. Designed for both **desktop** MOBILE SOON?, NOVA Photo Booth brings a **virtual photo booth experience** directly to your browser.
+[NOVA Photo Booth](https://allen1821.github.io/NOVA/) is a **fun and interactive web application** that lets users **capture photos using their device’s camera**, apply **creative filters and lighting effects**, and create **customizable photo strips**. Designed for **desktop** MOBILE SOON?, NOVA Photo Booth brings a **virtual photo booth experience** directly to your browser.
 
 ---
 
