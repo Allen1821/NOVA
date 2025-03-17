@@ -18,10 +18,10 @@
 ## 📂 Website Sections  
 
 1. **[Home](https://allen1821.github.io/NOVA/):** Introduction to the project and its key features.  
-2. **Booth:** The main **photo booth interface** for capturing and customizing photos.  
-3. **About:** Learn more about the creators and the project.  
-4. **Contact:** Reach out for assistance or inquiries.  
-5. **Privacy Policy:** Details about how the app handles user data.  
+2. **[Photo Booth](https://allen1821.github.io/NOVA/booth.html):** The main **photo booth interface** for capturing and customizing photos.  
+3. **[About](https://allen1821.github.io/NOVA/about.html):** Learn more about the creators and the project.  
+4. **[Contact](https://allen1821.github.io/NOVA/contact.html):** Reach out for assistance or inquiries.  
+5. **[Privacy Policy](https://allen1821.github.io/NOVA/privacy.html):** Details about how the app handles user data.  
 
 ---
 
